@@ -7,11 +7,7 @@
 var fs = require('fs');
 var xlsx = require('node-xlsx');
 var _  = require('underscore');
-var child = require('child_process');
-ls = child.exec('logname');
 
-ls.stdout.on('data',function(data){
-  var usr_name = data.replace(/\r|\n/g,'');
   //path lauguage.xlsx
   //删掉已经存在的language.js
   if(fs.existsSync('./language.js')){
@@ -52,4 +48,3 @@ ls.stdout.on('data',function(data){
   var fw_stream_cn = fs.createWriteStream( './language.js',option);
   fw_stream_cn.write( 'var Languages = {};(function(){ Languages.zhcn = ' + JSON.stringify(json) + '})();');
   console.log('language.js已经生成完成！');
-});
