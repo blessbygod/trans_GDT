@@ -1,0 +1,14 @@
+{
+  "name": "translate",
+  "author": {
+    "name": "senli"
+  },
+  "license": "MIT",
+  "description": "biz_webmail translate exec",
+  "main": "trans.js",
+  "dependencies": {
+    "underscore":"*",
+    "node-xlsx":"*"
+  },
+  "readmeFilename": "readme.md"
+}
