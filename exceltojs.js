@@ -13,8 +13,10 @@ ls = child.exec('logname');
 ls.stdout.on('data',function(data){
   var usr_name = data.replace(/\r|\n/g,'');
   //path lauguage.xlsx
-  var __dirname = '';
-  var file_buffer = fs.readFileSync(__dirname + './lauguage.xlsx');
+  //删掉已经存在的language.js
+  fs.unlinkSync('./language.js');
+  console.log('删除旧的language.js文件!');
+  var file_buffer = fs.readFileSync('./language.xlsx');
   var xlsx_file_obj = xlsx.parse( file_buffer ); 
 
   var json = {"values": []};
@@ -45,6 +47,7 @@ ls.stdout.on('data',function(data){
     encodeing:'utf-8',
     mode:'0666'
   };
-  var fw_stream_cn = fs.createWriteStream( __dirname + './lauguage.js',option);
+  var fw_stream_cn = fs.createWriteStream( __dirname + './language.js',option);
   fw_stream_cn.write( 'var Languages = {};(function(){ Languages.zhcn = ' + JSON.stringify(json) + '})();');
+  console.log('language.js已经生成完成！');
 });
